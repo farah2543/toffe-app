@@ -1,13 +1,12 @@
 package payment;
+
+
 public class loyalty_points implements Payment_method {
 
-	/**
-	 * 
-	 * @param amount
-	 */
+	public static double price;
+	double point = 0.1;
 	public void Pay(double amount) {
-		// TODO - implement loyalty_points.pay
-		throw new UnsupportedOperationException();
+		price = amount - amount*point;
 	}
 
 }
