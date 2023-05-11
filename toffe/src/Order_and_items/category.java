@@ -5,7 +5,7 @@ import java.util.Vector;
 public class category {
 
 	private String name;
-	private Vector<Item> C_items= new Vector<>();
+	private Vector<Item> C_items = new Vector<>();
 	public category(String Name)
 	{
 		name=Name;

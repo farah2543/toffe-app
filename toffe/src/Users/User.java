@@ -2,23 +2,42 @@ package Users;
 
 import website.Website;
 
-public class User {
+import java.io.FileNotFoundException;
+import java.util.Objects;
+import java.util.Vector;
 
+public class User {
 
 	private Account accounts;
 
-	public void register()  {
-		//String fileName = "example.txt";
-		//Account Newaccount=new Account();
-		Website x =new Website();
-		accounts = x.display_form();
+	public void register() throws FileNotFoundException {
+		// String fileName = "example.txt";
+		//Account New_account=new Account();
+		Website x = new Website();
+		accounts = x.display_register_form();
 	}
 
-	public void Login(String name, String password) {
+	public Boolean Login(String user_name, String password,Vector<Account>accounts) {
+
+		for (Account acc : accounts) {
+			if (Objects.equals(acc.get_username(), user_name)) {
+				// If the username exists, check if the password matches
+
+				return acc.getPassword().equals(password);  // If the password matches, will return true
+															// If the password does not match, will return false
+			}
+		}
+		// If the username is not found, return false
+		return false;
+	}
+
+
+		//String file_name = "example.txt";
+
+
 		// TODO - implement User.Login
-		System.out.println("Hello world!");
 
-	}
+
 	public User(){
 
 	}

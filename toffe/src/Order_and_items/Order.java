@@ -10,8 +10,8 @@ import java.util.Vector;
 public class Order {
 
 	private String ID;
-	private Vector<Item> item;
-	//private Payment_method Pay_method;
+	//private Vector<Item> item;
+	private Payment_method Pay_method;
 	private shopping_cart cart;
 	private String shipping_address;
 	private Status status;
@@ -20,6 +20,7 @@ public class Order {
 	public void setStatus(Status Status1) {
 		this.status = Status1;
 	}
+
 
 	public Status getStatus() {
 		return status;
@@ -34,8 +35,8 @@ public class Order {
 		if (status == Status.processing) {
 			shopping_cart cart1 = new shopping_cart();
 
-			System.out.println("select option  to select items");
-			System.out.println("1-search by item");
+			System.out.println("select option to select items");
+			System.out.println("1-search item by name");
 			System.out.println("2-add item to cart");
 			System.out.println("3-search item by brand");
 			System.out.println("4-Exist");
@@ -74,6 +75,16 @@ public class Order {
 
 		}
 	}
-	public Order(){};
+	public Order(){
+		//Create_order(Status.processing);
 
+	};
+
+	public Payment_method getPay_method() {
+		return Pay_method;
+	}
+
+	public void setPay_method(Payment_method pay_method) {
+		Pay_method = pay_method;
+	}
 }

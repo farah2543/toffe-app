@@ -1,9 +1,9 @@
-import Users.*;
+import website.*;
+import java.io.FileNotFoundException;
 
 public class Main {
-    public static void main(String[] args) {
-        User farah = new User();
-        farah.Login("farah","435345");
+    public static void main(String[] args) throws FileNotFoundException {
+        Website website = new Website();
 
     }
 }
