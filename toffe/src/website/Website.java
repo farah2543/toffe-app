@@ -1,10 +1,9 @@
 package website;
+import Order_and_items.Order;
+import Order_and_items.Status;
 import Users.User;
 import Users.Account;
-import payment.Ewallet;
-import payment.Gift_voucher;
-import payment.Payment_method;
-import payment.cash;
+import payment.*;
 
 import java.io.*;
 import java.util.Scanner;
@@ -12,16 +11,65 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class Website {
 	Scanner in = new Scanner(System.in);
-
 	private Database database  = new Database();
 	//private Vector<Account> accounts = new Vector<>();
 	private Vector<User> users= new Vector<>() ;
 	private User usr = new User();
+	private Order order = new Order();
 
 	private Catalogue catalogue;
+
+	public Website() {
+		database.load_file();
+
+		System.out.println("Welcome user, please choose the preferred action:");
+		System.out.println("1 - Login");
+		System.out.println("2 - Register");
+		System.out.println("3 - View catalogue");
+
+		int user_choice = in.nextInt();
+		in.nextLine();
+
+		switch (user_choice) {
+			case 1:
+				check_login();
+				break;
+			case 2:
+				display_register_form();
+				break;
+			case 3:
+				// TODO: Call view catalogue method
+				break;
+			default:
+				System.out.println("Invalid choice, please try again.");
+				break;
+
+
+
+		}
+	}
+
+	private void check_login() {
+		boolean logged_in = false;
+
+		while (!logged_in) {
+			System.out.println("Please enter your username:");
+			String name = in.nextLine();
+
+			System.out.println("Please enter your password:");
+			String password = in.nextLine();
+
+			logged_in = usr.Login(name, password, database.getAccounts());
+
+			if (logged_in) {
+				System.out.println("Logged in successfully.");
+			} else {
+				System.out.println("Invalid username or password. Please try again.");
+			}
+		}
+	}
 
 	public Boolean validate_info(User user)
 	{
@@ -120,55 +168,78 @@ public class Website {
 	}
 
 
-	private void check_login() {
-		boolean logged_in = false;
+	public void choose_shipping_address(){
 
-		while (!logged_in) {
-			System.out.println("Please enter your username:");
-			String name = in.nextLine();
-
-			System.out.println("Please enter your password:");
-			String password = in.nextLine();
-
-			logged_in = usr.Login(name, password, database.getAccounts());
-
-			if (logged_in) {
-				System.out.println("Logged in successfully.");
-			} else {
-				System.out.println("Invalid username or password. Please try again.");
-			}
-		}
-	}
-
-
-
-
-
-	public Website() {
-		database.load_file();
-
-		System.out.println("Welcome user, please choose the preferred action:");
-		System.out.println("1 - Login");
-		System.out.println("2 - Register");
-		System.out.println("3 - View catalogue");
-
+		System.out.println("do you want to use your original address");
+		System.out.println("1 - yes");
+		System.out.println("2 - NO i want to user another address");
 		int user_choice = in.nextInt();
 		in.nextLine();
 
 		switch (user_choice) {
 			case 1:
-				check_login();
+				order.setShipping_address(usr.getAccount().getAddress());
 				break;
 			case 2:
-				display_register_form();
+				System.out.println("please enter desired address");
+				String address = in.nextLine();
+				order.setShipping_address(address);
+				break;
+
+			default:
+				System.out.println("Invalid choice, please try again.");
+				break;
+		}
+
+
+	}
+
+
+	public Payment_method getPay_method() {
+
+		System.out.println("please enter the preferred payment method from the following ");
+		System.out.println("1 - cash on delivery");
+		System.out.println("2 - E-wallet");
+		System.out.println("3 - Gift voucher");
+		int user_choice = in.nextInt();
+		in.nextLine();
+
+		switch (user_choice) {
+			case 1:
+				order.setPay_method(new cash());
+				break;
+			case 2:
+				order.setPay_method(new Ewallet());
 				break;
 			case 3:
-				// TODO: Call view catalogue method
+				order.setPay_method(new Gift_voucher());
 				break;
 			default:
 				System.out.println("Invalid choice, please try again.");
 				break;
 		}
+		return order.getPay_method();
 	}
+
+	public Order check_out(){
+		try {
+			order.Create_order(Status.processing);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		Payment_method p = order.getPay_method();
+		p.Pay(order.getPrice());
+		choose_shipping_address();;
+		System.out.println("order has been successfully placed ");
+
+
+		return order;
+
+
+	}
+
+
+
+
 
 }

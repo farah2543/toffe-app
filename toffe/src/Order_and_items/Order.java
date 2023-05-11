@@ -14,7 +14,8 @@ public class Order {
 	private String ID;
 	private User user = new User();
 	//private Vector<Item> item;
-	private Payment_method Pay_method;
+	private Payment_method pay_method;
+
 	private shopping_cart cart;
 	private String shipping_address;
 	private Status status;
@@ -27,6 +28,24 @@ public class Order {
 
 	public Status getStatus() {
 		return status;
+	}
+
+	public void setPay_method(Payment_method pay_method) {
+		pay_method = pay_method;
+	}
+	public Payment_method getPay_method(){
+		return pay_method;
+	}
+
+	public String getShipping_address() {
+		return shipping_address;
+	}
+
+	public void setShipping_address(String shipping_address) {
+		this.shipping_address = shipping_address;
+	}
+	public double getPrice (){
+		return price;
 	}
 
 	public void Create_order(Status status) throws IOException {
@@ -93,75 +112,19 @@ public class Order {
 			p.Pay(price);
 		}
 		getPay_method();
-		Pay_method.Pay(price);
+		pay_method.Pay(price);
 
 	}
-	public String getShipping_address(){
-		System.out.println("do you want to use your original address");
-		System.out.println("1 - yes");
-		System.out.println("2 - NO i want to user another address");
-		int user_choice = in.nextInt();
-		in.nextLine();
-
-		switch (user_choice) {
-			case 1:
-				shipping_address = // account.address
-				break;
-			case 2:
-				System.out.println("please enter desired address");
-				String address = in.nextLine();
-				shipping_address = address;
-				break;
-			case 3:
-				Pay_method = new Gift_voucher();
-				break;
-			default:
-				System.out.println("Invalid choice, please try again.");
-				break;
-		}
-		return shipping_address;
-
-
-	}
-
-
 
 	public Order() {
-		pay();
+
 
 	}
 
 
 
-	public Payment_method getPay_method() {
-
-		System.out.println("please enter the preferred payment method from the following ");
-		System.out.println("1 - cash on delivery");
-		System.out.println("2 - E-wallet");
-		System.out.println("3 - Gift voucher");
-		int user_choice = in.nextInt();
-		in.nextLine();
-
-		switch (user_choice) {
-			case 1:
-				Pay_method = new cash();
-				break;
-			case 2:
-				Pay_method = new Ewallet();
-				break;
-			case 3:
-				Pay_method = new Gift_voucher();
-				break;
-			default:
-				System.out.println("Invalid choice, please try again.");
-				break;
-		}
-		return Pay_method;
-	}
 
 
 
-	public void setPay_method(Payment_method pay_method) {
-		Pay_method = pay_method;
-	}
+
 }
