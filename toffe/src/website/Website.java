@@ -1,9 +1,18 @@
 package website;
+import java.util.Properties;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Random;
+
 import Order_and_items.Order;
 import Order_and_items.Status;
-import Users.User;
 import Users.Account;
-import payment.*;
+import Users.User;
+import payment.Ewallet;
+import payment.Gift_voucher;
+import payment.Payment_method;
+import payment.cash;
 
 import java.io.*;
 import java.util.Scanner;
@@ -19,7 +28,7 @@ public class Website {
 	private User usr = new User();
 	private Order order = new Order();
 	public String fileName = "example.txt";
-
+    public int OTP;
 	private Catalogue catalogue;
 
 	public Website() throws IOException {
@@ -105,6 +114,62 @@ public class Website {
 			check = false;
 
 		}
+		else
+		{
+			String host = "smtp.gmail.com";
+			String username = "";//enter your email
+			String password = "";//enter your app password generated
+			String recipientEmail = "";//enter your email
+			String subject = "One-Time Password (OTP)";
+
+			// Generate a random OTP
+			int otp = generateOTP();
+
+			// Create the email body with the OTP
+			String body = "Your One-Time Password (OTP) is: " + otp;
+
+			// Set TLS properties
+			Properties props = new Properties();
+			props.put("mail.smtp.auth", "true");
+			props.put("mail.smtp.starttls.enable", "true");
+			props.put("mail.smtp.host", host);
+			props.put("mail.smtp.port", "587");
+
+			// Create a session with TLS support
+			Session session = Session.getInstance(props, new Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(username, password);
+				}
+			});
+
+			try {
+				MimeMessage message = new MimeMessage(session);
+				message.setFrom(new InternetAddress(username));
+				message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
+				message.setSubject(subject);
+				message.setText(body);
+
+				// Send the email
+				Transport.send(message);
+
+				System.out.println("OTP email sent successfully.");
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+			System.out.print("Please enter the OTP sent to your Email");
+			Scanner myObj = new Scanner(System.in);
+			int x=myObj.nextInt();
+			if(x==otp)
+			{
+				System.out.println("TRUE OTP ENTERED");
+			}
+			else {
+				System.out.println("Sorry wrong otp entered ! regestration is cancelled");
+				return false;
+			}
+
+
+		}
 		if (!passwordMatcher.matches()) {
 			System.out.println("The password is invalid.");
 			check = false;
@@ -122,8 +187,21 @@ public class Website {
 			System.out.println("The username is invalid.");
 			check = false;
 		}
+
+
 		return check;
 	}
+
+	private static int generateOTP() {
+		// Generate a random 6-digit OTP
+		Random random = new Random();
+		return 100000 + random.nextInt(900000);
+}
+
+
+
+
+
 	public void display_register_form()
 	{
 		System.out.println("Please Enter your Name");
@@ -153,7 +231,7 @@ public class Website {
 
 		try (FileWriter fileWriter = new FileWriter(fileName, true);
 			 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-			bufferedWriter.newLine();
+			
 			bufferedWriter.write(usr.getAccount().get_username());
 			bufferedWriter.newLine();
 			bufferedWriter.write(usr.getAccount().getPassword());
