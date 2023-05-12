@@ -3,88 +3,85 @@ package website;
 import Order_and_items.Item;
 import Order_and_items.category;
 import Order_and_items.type;
+import jdk.jfr.Category;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Objects;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class Catalogue {
 
-	private Vector<category> categories= new Vector<>();
-	 public Catalogue()
-	{
-		//TODO- we will change this (it's crooky) I put some categories to work on it
-		category cat = new category("chocolate");
-		category x = new category("Toffee");
+	//private final Vector<category> categories= new Vector<>();
+	private final Vector<Item> items = new Vector<>();
+	public Catalogue() throws FileNotFoundException {
+		//TODO- we will change this (it's crooky) I put some categories to work on it4
+		read_catalog();
 
-
-		categories.add(cat);
-		categories.add(x);
-
-		cat.addToVector(new Item("corona",cat,"this is a chocolate",30,"galaxy"));
-		cat.addToVector(new Item("galaxychoco",cat,"this is a chocolatechoco",45,"galaxylite"));
-		x.addToVector(new Item("toffix",x,"this is a toffee_ships",23,"kadbury"));
-		x.addToVector(new Item("machentoch",x,"this is a toffee",29,"kadbury"));
-		cat.getItems().get(0).setType(type.Sealed);
-		x.getItems().get(0).setType(type.Loose);
-		x.getItems().get(1).setType(type.Loose);
-		// System.out.println(categories.get(0).getItems().get(0).name);
-		//System.out.println(categories.get(1).getItems().get(0).name);
-		// System.out.println(categories.get(1).getItems().get(1).name);
 
 	}
 
-	public Item search_itembyName(String Name)
-	{
-		//Note:- this for searching item by name first we search on category and each category we search in its items
-		Item itm=new Item();
-		for(int i=0;i<categories.size();i++)
-		{
-
-
-			for(int j=0;j<categories.get(i).getItems().size();j++)
-			{
-				String n=categories.get(i).getItems().get(j).name;
-				if(Objects.equals(Name, n))
-				{
-
-					itm=categories.get(i).getItems().get(j) ;
-					break;
-
-				}
-
+	public Item search_itembyName(String Name) throws FileNotFoundException {
+		for(Item i:items){
+			if(i.getName().equals(Name)){
+				return i;
 			}
 		}
-
-
-		return itm;
+		return null;
 	}
 
-	public Vector<Item>search_itembyBrand(String brand)
-	{
-		//Note:- this for searching item by name first we search on category and then put all the items of same brand together
-		//to display it for user later
+	public Vector<Item>search_itembyBrand(String brand) throws FileNotFoundException {
 		Vector<Item>myitms=new Vector<>();
-		Vector<Item>temp=new Vector<>();
-		for(int i=0;i<categories.size();i++)
-		{
-			temp=categories.get(i).getItems();
-			for (int j = 0; j<temp.size() ; j++)
-			{
-				String brandtemp =categories.get(i).getItems().get(j).getBrand();
-				if (Objects.equals(brand,brandtemp))
-				{
-					myitms.add(categories.get(i).getItems().get(j));
-				}
-
+		for(Item i:items){
+			if(i.getBrand().equals(brand)){
+				myitms.add(i);
 			}
 		}
-
 		return myitms;
 	}
 
-	public void view_category(category category) {
-		// TODO - implement Catalogue.view_category
 
+	public void read_catalog() throws FileNotFoundException {
+		BufferedReader reader  = new BufferedReader(new FileReader("catalog_example.txt"));
+		Scanner input  = new Scanner(reader);
+		int num = input.nextInt();
+		for(int i =0;i<num; i++){
+			input.nextLine();
+			String itemNAme = input.nextLine();
+			String categoryName = input.nextLine();
+			String typeName =input.next();
+			input.nextLine();
+			String description = input.nextLine();
+			double price = input.nextDouble();
+			double disc = input.nextDouble();
+			String brandName = input.next();
+			double quant = input.nextDouble();
+			category cat = new category(categoryName);
+			Item newItem = new Item(itemNAme,cat,description,price, brandName);
+			if(Objects.equals(typeName, "loose")){
+				newItem.setType(type.Loose);
+			}
+			if(Objects.equals(typeName, "sealed")){
+				newItem.setType(type.Sealed);
+			}
+			newItem.setQuantity(quant);
+			newItem.setDiscount_per(disc);
+			cat.addToVector(newItem);
+			items.add(newItem);
+		}
 	}
-
+	public void print() {
+		for(Item i: items){
+			System.out.println("The catalog contains:");
+			System.out.println(i.getName());
+			System.out.println(i.getCategory().getName());
+			System.out.println(i.getType());
+			System.out.println(i.get_description());
+			System.out.println(i.get_price());
+			System.out.println(i.getBrand());
+			System.out.println(i.getQuantity());
+		}
+	}
 }

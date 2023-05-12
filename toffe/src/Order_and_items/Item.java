@@ -1,29 +1,28 @@
 package Order_and_items;
 public class Item {
 
-
-	public String name;
+	private String name;
 	private category category;
 	private type type;
 	private String description;
-	public double price;
+	private double price;
 	private double discount_per;
 	private String brand;
 
 	private double quantity;
 
-	public Item(String Name,category category1,String Description,double Price,String Brand) {
-
+	public Item(String Name,category category1,String Description,double Price, String Brand) {
 		name=Name;
 		category=category1;
 		description=Description;
-		brand=Brand;
 		price=Price;
+		brand = Brand;
 
 	}
 	public Item(){}
 
-	public void setQuantity(double quantity) {
+
+	public  void setQuantity(double quantity) {
 		this.quantity = quantity;
 	}
 
@@ -31,7 +30,7 @@ public class Item {
 		return quantity;
 	}
 
-	String getName()
+	public String getName()
 	{
 		return name;
 	}
@@ -45,7 +44,7 @@ public class Item {
 		return brand;
 	}
 
-	public void setDiscount_per(double discount_per)
+	public  void setDiscount_per(double discount_per)
 	{
 		this.discount_per = discount_per;
 	}
@@ -66,7 +65,7 @@ public class Item {
 		return category;
 	}
 
-	public void setType(type type) {
+	public  void setType(type type) {
 		this.type = type;
 	}
 
@@ -74,4 +73,11 @@ public class Item {
 		return type;
 	}
 
+	public String get_description(){
+		return description;
+	}
+	public double get_price(){return price;}
+
+
 }
+

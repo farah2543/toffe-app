@@ -163,7 +163,57 @@ public class Website {
 
 			bufferedWriter.close();
 
+		}
 
+	}
+
+
+	public void choose_shipping_address(){
+
+		System.out.println("do you want to use your original address");
+		System.out.println("1 - yes");
+		System.out.println("2 - NO i want to user another address");
+		int user_choice = in.nextInt();
+		in.nextLine();
+
+		switch (user_choice) {
+			case 1:
+				order.setShipping_address(usr.getAccount().getAddress());
+				break;
+			case 2:
+				System.out.println("please enter desired address");
+				String address = in.nextLine();
+				order.setShipping_address(address);
+				break;
+
+			default:
+				System.out.println("Invalid choice, please try again.");
+				break;
+		}
+	}
+
+
+	public void choose_shipping_address(){
+
+		System.out.println("do you want to use your original address");
+		System.out.println("1 - yes");
+		System.out.println("2 - NO i want to user another address");
+		int user_choice = in.nextInt();
+		in.nextLine();
+
+		switch (user_choice) {
+			case 1:
+				order.setShipping_address(usr.getAccount().getAddress());
+				break;
+			case 2:
+				System.out.println("please enter desired address");
+				String address = in.nextLine();
+				order.setShipping_address(address);
+				break;
+
+			default:
+				System.out.println("Invalid choice, please try again.");
+				break;
 		}
 	}
 
