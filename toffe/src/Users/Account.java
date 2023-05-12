@@ -9,14 +9,14 @@ public class Account
 	private String address;
 	private String phone_number;
 
-	public Account(String Name, String Email, String Password, String address, String phoneNumber) {
+	public Account(String Name, String Email, String Password, String address1, String phoneNumber) {
 
 
-		user_name=Name;
-		e_mail=Email;
-		password=Password;
-		address =address;
-		phone_number=phoneNumber;
+		this.user_name=Name;
+		this.e_mail=Email;
+		this.password=Password;
+		this.address = address1;
+		this.phone_number=phoneNumber;
 
 
 	}

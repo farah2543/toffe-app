@@ -1,16 +1,10 @@
 import website.*;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Website website = new Website();
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 933d029f1f908a13c4877144ae5ec8f4506f126d
->>>>>>> Stashed changes
 
     }
 }

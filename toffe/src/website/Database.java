@@ -14,17 +14,40 @@ public class Database {
 	private Vector<Account> accounts = new Vector<>();
 	private Vector<User> users  = new Vector<>();
 	private Catalogue catalogue;
-	Scanner file_scanner;
-	File file = new File("C:\\Users\\DELL\\Desktop\\software\\assignment 3\\CS251-2023-S31-A3-20210386-FinalToffeeSDSv1.0\\toffe-app\\toffe\\example.txt");
-	{
-		try {
-			file_scanner = new Scanner(file);
-		}
-		catch (FileNotFoundException e) {
-			System.out.println("the file is not opened");
+	public Scanner file_scanner;
 
-			throw new RuntimeException(e);
+	public void load_file(){
+
+		File file = new File("example.txt");
+		{
+			try {
+				file_scanner = new Scanner(file);
+			}
+			catch (FileNotFoundException e) {
+				System.out.println("the file is not opened");
+
+				throw new RuntimeException(e);
+			}
 		}
+		while (file_scanner.hasNextLine()) {
+			String username = file_scanner.nextLine();
+			String password = file_scanner.nextLine();
+			String email = file_scanner.nextLine();
+			String address = file_scanner.nextLine();
+			String phoneNumber = file_scanner.nextLine();
+
+			// create a new Account object and add it to the vector
+			accounts.add(new Account(username, email, password, address, phoneNumber));
+
+			// skip the empty line
+			if (file_scanner.hasNextLine()) {
+				file_scanner.nextLine();
+			}
+		}
+
+		file_scanner.close();
+
+
 	}
 
 	public Vector<Account> getAccounts() {
@@ -55,43 +78,5 @@ public class Database {
 
 	}
 
-	public void load_file(){
-
-		while (file_scanner.hasNextLine()) {
-			String username = file_scanner.nextLine();
-			String password = file_scanner.nextLine();
-			String email = file_scanner.nextLine();
-			String address = file_scanner.nextLine();
-			String phoneNumber = file_scanner.nextLine();
-
-			// create a new Account object and add it to the vector
-			accounts.add(new Account(username, email, password, address, phoneNumber));
-
-			// skip the empty line
-			if (file_scanner.hasNextLine()) {
-				file_scanner.nextLine();
-			}
-		}
-
-		file_scanner.close();
-
-
-	}
-
-    /* public void read_file() throws IOException
-     {
-         String filePath = "example.txt";
-         BufferedReader br = new BufferedReader(new FileReader(filePath));
-         users user=new users();
-         //read_file();
-
-
-     }*/
-    /*public Item get_item() {
-        Item itm = new Item();
-        // TODO - implement Database.get_item
-
-        return itm;
-    }*/
 
 }

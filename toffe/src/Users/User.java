@@ -3,6 +3,7 @@ package Users;
 import website.Website;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Vector;
 
@@ -10,12 +11,12 @@ public class User {
 
 	private Account accounts;
 
-	public void register() throws FileNotFoundException {
-		// String fileName = "example.txt";
-		//Account New_account=new Account();
-		Website x = new Website();
-		accounts = x.display_register_form();
-	}
+//	public void register() throws IOException {
+//		// String fileName = "example.txt";
+//		//Account New_account=new Account();
+//		Website x = new Website();
+//		accounts = x.display_register_form();
+//	}
 
 	public Boolean Login(String user_name, String password,Vector<Account>accounts) {
 
@@ -46,4 +47,7 @@ public class User {
 		return accounts;
 	}
 
+	public void setAccounts(Account accounts) {
+		this.accounts = accounts;
+	}
 }

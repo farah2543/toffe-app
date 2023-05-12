@@ -18,10 +18,11 @@ public class Website {
 	private Vector<User> users= new Vector<>() ;
 	private User usr = new User();
 	private Order order = new Order();
+	public String fileName = "example.txt";
 
 	private Catalogue catalogue;
 
-	public Website() {
+	public Website() throws IOException {
 		database.load_file();
 
 		System.out.println("Welcome user, please choose the preferred action:");
@@ -37,7 +38,7 @@ public class Website {
 				check_login();
 				break;
 			case 2:
-				display_register_form();
+				register();
 				break;
 			case 3:
 				// TODO: Call view catalogue method
@@ -75,11 +76,11 @@ public class Website {
 	{
 
 		boolean check = true;
-		String emailRegex = "[A-Za-z]+[0-7]*@[A-Za-z]+.com";
-		String usernameRegex = "[A-Za-z]+[0-7]*";
-		String phoneRegex = "[0-9]*";
-		String addressRegex = "[0-9]*[A-za-z]+";
-		String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]$";
+		String emailRegex = "^(.+)@(.+)$";
+		String usernameRegex = "[a-zA-Z0-9_-]{3,16}$";
+		String phoneRegex = "^01[0-2,5]{1}[0-9]{8}$";
+		String addressRegex = "^[A-Za-z0-9\\\\s]{1,100}$";
+		String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,15}$";
 
 		Pattern emailpattern = Pattern.compile(emailRegex);
 		Matcher emailmatcher = emailpattern.matcher(user.getAccount().get_email());
@@ -87,14 +88,17 @@ public class Website {
 		Pattern namepattern = Pattern.compile(usernameRegex);
 		Matcher namematcher = namepattern.matcher(user.getAccount().get_username());
 
+
 		Pattern phonepattern = Pattern.compile(phoneRegex);
 		Matcher phonematcher = phonepattern.matcher(user.getAccount().getPhone_number());
 
 		Pattern addressPattern = Pattern.compile(addressRegex);
 		Matcher addressMatcher = addressPattern.matcher(user.getAccount().getAddress());
 
+
 		Pattern passwordPattern = Pattern.compile(passwordRegex);
 		Matcher passwordMatcher = passwordPattern.matcher(user.getAccount().getPassword());
+
 
 		if (!emailmatcher.matches()) {
 			System.out.println("The email address is invalid.");
@@ -120,9 +124,8 @@ public class Website {
 		}
 		return check;
 	}
-	public Account display_register_form()
+	public void display_register_form()
 	{
-
 		System.out.println("Please Enter your Name");
 		String Name= in.nextLine();
 		System.out.println("Please Enter your Password");
@@ -133,22 +136,23 @@ public class Website {
 		String Address= in.nextLine();
 		System.out.println("Please Enter your PhoneNumber");
 		String PhoneNumber= in.nextLine();
-		Account account =new Account(Name,Email,Password,Address,PhoneNumber);
-		return account;
-	}
-	public void create_user() throws IOException {
-		//validate info
+		Account account =new Account(Name,Email,Password,Address, PhoneNumber);
+		usr.setAccounts(account);
 
-		usr.register();
 		while (!validate_info(usr)) {
 			System.out.println("unSuccessfully registered");
-			usr.register();
+			display_register_form();
 		}
-		if (validate_info(usr)) {
-			System.out.println("Successfully registered");
-			String fileName = "example.txt";
-			FileWriter fileWriter = new FileWriter(fileName);
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+
+	}
+	public void create_user() {
+		display_register_form();
+
+		System.out.println("Successfully registered");
+
+		try (FileWriter fileWriter = new FileWriter(fileName, true);
+			 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
 			bufferedWriter.newLine();
 			bufferedWriter.write(usr.getAccount().get_username());
 			bufferedWriter.newLine();
@@ -160,10 +164,37 @@ public class Website {
 			bufferedWriter.newLine();
 			bufferedWriter.write(usr.getAccount().getPhone_number());
 			bufferedWriter.newLine();
-
-			bufferedWriter.close();
-
+		} catch (IOException e) {
+			System.out.println("file not opened");
+			e.printStackTrace();
 		}
+	}
+
+	//	public void create_user() throws IOException {
+//		display_register_form();
+//
+//		System.out.println("Successfully registered");
+//		String fileName = "example.txt";
+//		FileWriter fileWriter = new FileWriter(fileName);
+//		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+//		bufferedWriter.newLine();
+//		bufferedWriter.write(usr.getAccount().get_username());
+//		bufferedWriter.newLine();
+//		bufferedWriter.write(usr.getAccount().getPassword());
+//		bufferedWriter.newLine();
+//		bufferedWriter.write(usr.getAccount().get_email());
+//		bufferedWriter.newLine();
+//		bufferedWriter.write(usr.getAccount().getAddress());
+//		bufferedWriter.newLine();
+//		bufferedWriter.write(usr.getAccount().getPhone_number());
+//		bufferedWriter.newLine();
+//		bufferedWriter.close();
+//
+//
+//
+//	}
+	public void register() throws IOException {
+		create_user();
 
 	}
 
@@ -190,58 +221,6 @@ public class Website {
 				System.out.println("Invalid choice, please try again.");
 				break;
 		}
-	}
-
-
-	public void choose_shipping_address(){
-
-		System.out.println("do you want to use your original address");
-		System.out.println("1 - yes");
-		System.out.println("2 - NO i want to user another address");
-		int user_choice = in.nextInt();
-		in.nextLine();
-
-		switch (user_choice) {
-			case 1:
-				order.setShipping_address(usr.getAccount().getAddress());
-				break;
-			case 2:
-				System.out.println("please enter desired address");
-				String address = in.nextLine();
-				order.setShipping_address(address);
-				break;
-
-			default:
-				System.out.println("Invalid choice, please try again.");
-				break;
-		}
-	}
-
-
-	public void choose_shipping_address(){
-
-		System.out.println("do you want to use your original address");
-		System.out.println("1 - yes");
-		System.out.println("2 - NO i want to user another address");
-		int user_choice = in.nextInt();
-		in.nextLine();
-
-		switch (user_choice) {
-			case 1:
-				order.setShipping_address(usr.getAccount().getAddress());
-				break;
-			case 2:
-				System.out.println("please enter desired address");
-				String address = in.nextLine();
-				order.setShipping_address(address);
-				break;
-
-			default:
-				System.out.println("Invalid choice, please try again.");
-				break;
-		}
-
-
 	}
 
 
