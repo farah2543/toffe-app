@@ -1,7 +1,6 @@
 package Users;
 
-public class Account
-{
+public class Account {
     private final String user_name;
 
     private final String password;
@@ -10,8 +9,7 @@ public class Account
     private final String address;
     private final String phone_number;
 
-    public Account (String Name , String Email , String Password , String address1 , String phoneNumber)
-    {
+    public Account(String Name, String Email, String Password, String address1, String phoneNumber) {
 
 
         this.user_name = Name;
@@ -23,30 +21,25 @@ public class Account
 
     }
 
-    public String get_email ( )
-    {
+    public String get_email() {
 
         return e_mail;
     }
 
-    public String get_username ( )
-    {
+    public String get_username() {
         return user_name;
     }
 
-    public String getPassword ( )
-    {
+    public String getPassword() {
         return password;
     }
 
-    public String getAddress ( )
-    {
+    public String getAddress() {
 
         return address;
     }
 
-    public String getPhone_number ( )
-    {
+    public String getPhone_number() {
 
         return phone_number;
     }

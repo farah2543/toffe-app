@@ -1,7 +1,6 @@
 package Order_and_items;
 
-public class Item
-{
+public class Item {
 
     private String name;
     private category category;
@@ -12,12 +11,12 @@ public class Item
     private String brand;
 
     private double quantity;
-    public Item ( )
-    {}
+
+    public Item() {
+    }
 
 
-    public Item (String Name , category category1 , String Description , double Price , String Brand)
-    {
+    public Item(String Name, category category1, String Description, double Price, String Brand) {
         name = Name;
         category = category1;
         description = Description;
@@ -27,65 +26,52 @@ public class Item
     }
 
 
-
-    public void setQuantity (double quantity)
-    {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 
-    public double getQuantity ( )
-    {
+    public double getQuantity() {
         return quantity;
     }
 
-    public String getName ( )
-    {
+    public String getName() {
         return name;
     }
 
-    String getDescription ( )
-    {
+    String getDescription() {
         return description;
     }
 
-    public String getBrand ( )
-    {
+    public String getBrand() {
         return brand;
     }
 
-    public void setDiscount_per (double discount_per)
-    {
+    public void setDiscount_per(double discount_per) {
         this.discount_per = discount_per;
     }
 
-    public double getDiscount_per ( )
-    {
+    public double getDiscount_per() {
         return discount_per;
     }
 
 
-    public double getPrice ( )
-    {
+    public double getPrice() {
         return price;
     }
 
-    public Order_and_items.category getCategory ( )
-    {
+    public Order_and_items.category getCategory() {
         return category;
     }
 
-    public void setType (type type)
-    {
+    public void setType(type type) {
         this.type = type;
     }
 
-    public type getType ( )
-    {
+    public type getType() {
         return type;
     }
 
-    public String get_description ( )
-    {
+    public String get_description() {
         return description;
     }
 

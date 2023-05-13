@@ -9,11 +9,8 @@ public class category {
 
     public category (String Name) {
         name = Name;
-
     }
-
-    public category ( ) {
-    }
+    public category ( ) {}
 
     public void addToVector (Item element) {
         C_items.add( element );

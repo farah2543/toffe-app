@@ -1,7 +1,6 @@
 package payment;
 
-public class cash implements Payment_method
-{
+public class cash implements Payment_method {
 
     /**
      *
@@ -10,15 +9,13 @@ public class cash implements Payment_method
     /**
      * @param phone_num
      */
-    public boolean verify_phone (String phone_num)
-    {
+    public boolean verify_phone(String phone_num) {
         // TODO - implement cash.verify_phone
-        throw new UnsupportedOperationException( );
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public void Pay (double amount)
-    {
+    public void Pay(double amount) {
 
     }
 }

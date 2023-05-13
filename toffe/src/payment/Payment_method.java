@@ -1,8 +1,7 @@
 package payment;
 
-public interface Payment_method
-{
+public interface Payment_method {
 
-    void Pay (double amount);
+    void Pay(double amount);
 
 }

@@ -3,11 +3,9 @@ import website.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Main
-{
-    public static void main (String[] args) throws IOException
-    {
-        Website website = new Website( );
+public class Main {
+    public static void main(String[] args) throws IOException {
+        Website website = new Website();
 
     }
 }
