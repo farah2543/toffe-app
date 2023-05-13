@@ -1,20 +1,23 @@
 package payment;
-public class Gift_voucher implements Payment_method {
 
-	private String code;
+public class Gift_voucher implements Payment_method
+{
 
-	/**
-	 * 
-	 * @param amount
-	 */
-	public void Pay(double amount) {
-		// TODO - implement Gift_voucher.pay
-		throw new UnsupportedOperationException();
-	}
+    private String code;
 
-	public void buy_voucher() {
-		// TODO - implement Gift_voucher.buy_voucher
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * @param amount
+     */
+    public void Pay (double amount)
+    {
+        // TODO - implement Gift_voucher.pay
+        throw new UnsupportedOperationException( );
+    }
+
+    public void buy_voucher ( )
+    {
+        // TODO - implement Gift_voucher.buy_voucher
+        throw new UnsupportedOperationException( );
+    }
 
 }

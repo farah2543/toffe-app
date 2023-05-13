@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../javax.mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../otp send/activation.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../otp send/javax.mail.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
