@@ -1,3 +1,13 @@
+/**
+
+ The Website class represents a website which provides a platform for users to purchase items.
+ The class contains methods to login, register, view catalogue, make orders, check out, and validate user information.
+ It also has properties such as Scanner, Database, Catalogue, User, Order, and Buyer.
+ The Website constructor is the entry point of the program which asks the user to choose a preferred action and performs the corresponding action.
+ If the user chooses to make an order, the constructor checks if the user is logged in, and if not, prompts the user to login.
+ The class also contains methods to generate a One-Time Password (OTP), and to validate user information including email, username, phone number, address, and password.
+ */
+
 package website;
 
 import java.util.Properties;
@@ -6,6 +16,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Random;
 
+import Order_and_items.Item;
 import Order_and_items.Order;
 import Order_and_items.Status;
 import Users.*;
@@ -17,6 +28,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+<<<<<<< Updated upstream
 public class Website {
     Scanner in = new Scanner(System.in);
     private final Database database = new Database();
@@ -26,9 +38,63 @@ public class Website {
 
     private Buyer buyer;
     private final Order order = new Order();
+=======
+public class Website
+{
+    Scanner in = new Scanner(System.in);
+    /**
+      The Database object for storing and retrieving user account information
+     */
+     private final Database database = new Database();
+     /**
+     * The Vector object for storing User objects
+     */
+     private final Vector<User> users = new Vector<>();
+     /**
+     * The User object for representing the current user
+     */
+    private final User usr = new User();
+    /**
+     * The Buyer object for representing the buyer of the order
+     */
+    private Buyer buyer;
+    /**
+     * The Order object for representing the order
+     */
+    private final Order order = new Order();
+    /**
+     * The name of the file to store the OTP
+     */
+>>>>>>> Stashed changes
     public String fileName = "example.txt";
+    /**
+     * The OTP for the current session
+     */
     public int OTP;
+<<<<<<< Updated upstream
     private final Catalogue catalogue = new Catalogue();
+=======
+    /**
+     * The Catalogue object for storing and displaying items
+     */
+    private final Catalogue catalogue = new Catalogue();
+
+    /**
+     * The constructor for Website class which initializes the Database and Catalogue objects, and prompts the user to choose a preferred action.
+     * If the user chooses to make an order, the constructor checks if the user is logged in, and if not, prompts the user to login.
+     * @throws IOException If an I/O error occurs
+     */
+
+
+    /**
+
+     Constructs a website with a database and a catalogue of products
+
+     Allows user to choose action - login, register or view catalogue
+
+     @throws IOException if there is an issue with file input/output
+     */
+>>>>>>> Stashed changes
 
     public Website() throws IOException {
         database.load_file();
@@ -61,6 +127,7 @@ public class Website {
         int choice = in.nextInt();
         in.nextLine();
 
+<<<<<<< Updated upstream
         if (choice == 1) {
             if (check_login()) {
                 catalogue.print();
@@ -70,6 +137,18 @@ public class Website {
                 System.out.println("did you deliver the order");
                 System.out.println("1 - yes");
                 System.out.println("2 - NO ");
+=======
+        if ( choice == 1 )
+        {
+            if ( check_login( ) )
+            {
+                order.Create_order( );
+                check_out( );
+                order.setStatus( Status.shipping );
+                System.out.println( "did you deliver the order" );
+                System.out.println( "1 - yes" );
+                System.out.println( "2 - NO " );
+>>>>>>> Stashed changes
             }
 
             int shipping_choice = in.nextInt();
@@ -94,6 +173,10 @@ public class Website {
 
 
     }
+    /**
+
+     Logs user into the website
+     */
 
     private void login() {
         boolean logged_in = false;
@@ -114,6 +197,12 @@ public class Website {
             }
         }
     }
+    /**
+
+     Checks if user is logged in, if not, prompts user to login
+
+     @return true if user is logged in, false otherwise
+     */
 
     private boolean check_login() {
         while (usr.getAccount() == null) {
@@ -126,6 +215,15 @@ public class Website {
         }
         return false;
     }
+/**
+
+ Validates user information against regex patterns for email, username, phone number, address and password
+ @param user the user to validate information for
+ @return true if all information is valid, false otherwise
+ . *
+  * @param user The user account to validate.
+ * @return A boolean indicating whether the user information is valid.
+ */
 
     public Boolean validate_info(User user) {
         boolean check = true;
@@ -231,12 +329,22 @@ public class Website {
 
         return check;
     }
+    /**
+
+     Generates a random 6-digit OTP.
+     @return an integer value representing the generated OTP
+     */
 
     private static int generateOTP() {
         // Generate a random 6-digit OTP
         Random random = new Random();
         return 100000 + random.nextInt(900000);
     }
+    /**
+
+     Displays the user registration form and creates a new account for the user.
+     @throws IOException if there is an error writing to the file
+     */
 
     public void display_register_form() {
         System.out.println("Please Enter your Name");
@@ -252,13 +360,45 @@ public class Website {
         Account account = new Account(Name, Email, Password, Address, PhoneNumber);
         usr.setAccounts(account);
 
+<<<<<<< Updated upstream
         while (!validate_info(usr)) {
             System.out.println("unSuccessfully registered");
             display_register_form();
+=======
+    public void display_register_form ( )
+    {
+        /**
+
+         Prompts the user to fill in their registration details and creates a new account.
+         */
+        System.out.println( "Please Enter your Name" );
+        String Name = in.nextLine( );
+        System.out.println( "Please Enter your Password" );
+        String Password = in.nextLine( );
+        System.out.println( "Please Enter your Email" );
+        String Email = in.nextLine( );
+        System.out.println( "Please Enter your Address" );
+        String Address = in.nextLine( );
+        System.out.println( "Please Enter your PhoneNumber" );
+        String PhoneNumber = in.nextLine( );
+        Account account = new Account( Name , Email , Password , Address , PhoneNumber );
+        usr.setAccounts( account );
+
+        while ( !validate_info( usr ) )
+        {
+            System.out.println( "unSuccessfully registered" );
+            display_register_form( );
+>>>>>>> Stashed changes
         }
 
 
     }
+    /**
+
+     Writes the user's account information to a file.
+
+     @throws IOException if there is an error writing to the file
+     */
 
     public void create_user() {
         display_register_form();
@@ -287,6 +427,10 @@ public class Website {
         create_user();
 
     }
+    /**
+
+     Prompts the user to choose between their original address or a new address for shipping.
+     */
 
 
     public void choose_shipping_address() {
@@ -312,6 +456,12 @@ public class Website {
                 break;
         }
     }
+    /**
+
+     Prompts the user to select a payment method and sets it for the order.
+
+     @return the payment method chosen by the user
+     */
 
 
     public Payment_method set_method() {
@@ -339,6 +489,12 @@ public class Website {
         }
         return order.getPay_method();
     }
+    /**
+
+     This method allows the user to check out their items and place an order.
+
+     @return the order object.
+     */
 
     public Order check_out() {
         try {
@@ -346,12 +502,24 @@ public class Website {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+<<<<<<< Updated upstream
         set_method();
         order.pay();
         choose_shipping_address();
         ;
         order.setStatus(Status.processing);
         System.out.println("order has been successfully placed ");
+=======
+        order.getCart().print_cart();
+        System.out.println("your total is " +order.getPrice());
+        set_method( );
+        order.pay( );
+        choose_shipping_address( );
+
+        order.setStatus( Status.processing );
+        System.out.println( "order has been successfully placed " );
+>>>>>>> Stashed changes
+
 
         return order;
 

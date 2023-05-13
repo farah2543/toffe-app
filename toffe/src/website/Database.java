@@ -1,3 +1,9 @@
+
+/**
+
+ The Database class represents a database that contains information about users and accounts. It also has a reference to a Catalogue object.
+ */
+
 package website;
 
 import Order_and_items.Item;
@@ -14,6 +20,10 @@ public class Database {
     private final Vector<User> users = new Vector<>();
     private Catalogue catalogue;
     public Scanner file_scanner;
+    /**
+     * Loads the information from a file and adds it to the accounts vector
+     * @throws RuntimeException if the file is not found
+     */
 
     public void load_file() {
 
@@ -47,6 +57,7 @@ public class Database {
 
 
     }
+<<<<<<< Updated upstream
 
     public Vector<Account> getAccounts() {
         return accounts;
@@ -63,10 +74,48 @@ public class Database {
     public User get_user() {
         User user = new User();
         // TODO - implement Database.get_user
+=======
+    /**
+     * Returns the accounts vector
+     * @return the accounts vector
+     */
+    public Vector<Account> getAccounts()
+    {
+        return accounts;
+    }
+
+    /**
+     * Returns the users vector
+     * @return the users vector
+     */
+    public Vector<User> getUsers()
+    {
+        return users;
+    }
+
+    /**
+     * Adds the given element to the users vector
+     * @param element the element to be added
+     */
+    public void addToVector(User element)
+    {
+        users.add(element);
+    }
+
+    /**
+     * Returns a User object
+     * @return a User object
+     */
+    public User get_user()
+    {
+        User user = new User();
+        // TODO - your implementation
+>>>>>>> Stashed changes
 
         return user;
     }
 
+<<<<<<< Updated upstream
     public void store_user() {
         // TODO - implement Database.store_user
 
@@ -75,7 +124,23 @@ public class Database {
     public void store_item(Item item) {
         // TODO - implement Database.store_item
 
+=======
+    /**
+     * Stores the user information
+     */
+    public void store_user()
+    {
+        // TODO - your implementation
     }
 
+    /**
+     * Stores the given item in the database
+     * @param item the item to be stored
+     */
+    public void store_item(Item item)
+    {
+        // TODO - your implementation
+>>>>>>> Stashed changes
+    }
 
 }
