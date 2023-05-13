@@ -24,16 +24,13 @@ public class category {
      */
     public category ( String Name ) {
         name = Name;
-<<<<<<< Updated upstream
-=======
+
     }
 
     /**
      * Creates a new empty category.
      */
-    public category () {
->>>>>>> Stashed changes
-    }
+
     public category ( ) {}
 
     /**

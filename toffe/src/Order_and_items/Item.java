@@ -1,19 +1,18 @@
 /**
-
- The Item class represents an item that can be added to an order.
- It contains information such as the name, category, type, description, price, discount, brand and quantity of the item.
+ * The Item class represents an item that can be added to an order.
+ * It contains information such as the name, category, type, description, price, discount, brand and quantity of the
+ * item.
  */
 package Order_and_items;
-<<<<<<< Updated upstream
+
 
 public class Item {
 
-=======
-public class Item {
+
     /**
      * The name of the item.
      */
->>>>>>> Stashed changes
+
     private String name;
 
     /**
@@ -50,33 +49,19 @@ public class Item {
      * The quantity of the item.
      */
     private double quantity;
-<<<<<<< Updated upstream
 
-    public Item() {
+
+    public Item () {
     }
-=======
->>>>>>> Stashed changes
+
 
     /**
      * Creates a new empty item.
      */
-    public Item () {
-    }
 
-<<<<<<< Updated upstream
-    public Item(String Name, category category1, String Description, double Price, String Brand) {
-=======
-    /**
-     * Creates a new item with the given name, category, description, price and brand.
-     *
-     * @param Name        the name of the item
-     * @param category1   the category of the item
-     * @param Description the description of the item
-     * @param Price       the price of the item
-     * @param Brand       the brand of the item
-     */
+
     public Item ( String Name , category category1 , String Description , double Price , String Brand ) {
->>>>>>> Stashed changes
+
         name = Name;
         category = category1;
         description = Description;
@@ -84,51 +69,7 @@ public class Item {
         brand = Brand;
     }
 
-<<<<<<< Updated upstream
 
-    public void setQuantity(double quantity) {
-        this.quantity = quantity;
-    }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    String getDescription() {
-        return description;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setDiscount_per(double discount_per) {
-        this.discount_per = discount_per;
-    }
-
-    public double getDiscount_per() {
-        return discount_per;
-    }
-
-
-    public double getPrice() {
-        return price;
-    }
-
-    public Order_and_items.category getCategory() {
-        return category;
-    }
-
-    public void setType(type type) {
-        this.type = type;
-    }
-
-    public type getType() {
-=======
     /**
      * Sets the quantity of the item.
      *
@@ -225,20 +166,18 @@ public class Item {
      * @return the type of the item
      */
     public type getType () {
->>>>>>> Stashed changes
+
         return type;
     }
+
     /**
      * Returns the description  of the item.
      *
      * @return the description of the item
      */
 
-<<<<<<< Updated upstream
-    public String get_description() {
-=======
     public String get_description () {
->>>>>>> Stashed changes
+
         return description;
     }
 }

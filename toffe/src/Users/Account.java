@@ -4,15 +4,10 @@
  The Account class represents a user account with essential information such as name, email, password, address, and phone number.
  */
 package Users;
-<<<<<<< Updated upstream
-
-public class Account {
-=======
 public class Account {
     /**
      * The user's username.
      */
->>>>>>> Stashed changes
     private final String user_name;
     /**
      * The user's password.
@@ -34,10 +29,6 @@ public class Account {
      */
     private final String phone_number;
 
-<<<<<<< Updated upstream
-    public Account(String Name, String Email, String Password, String address1, String phoneNumber) {
-
-=======
     /**
      * Constructs an Account object with the specified user information.
      *
@@ -48,7 +39,6 @@ public class Account {
      * @param phoneNumber the user's phone number.
      */
     public Account ( String Name , String Email , String Password , String address1 , String phoneNumber ) {
->>>>>>> Stashed changes
 
         this.user_name = Name;
         this.e_mail = Email;
@@ -58,31 +48,16 @@ public class Account {
 
     }
 
-<<<<<<< Updated upstream
-    public String get_email() {
-=======
     /**
      * Returns the user's email address.
      *
      * @return the user's email address.
      */
     public String get_email () {
->>>>>>> Stashed changes
 
         return e_mail;
     }
 
-<<<<<<< Updated upstream
-    public String get_username() {
-        return user_name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getAddress() {
-=======
     /**
      * Returns the user's username.
      *
@@ -107,21 +82,16 @@ public class Account {
      * @return the user's address.
      */
     public String getAddress () {
->>>>>>> Stashed changes
 
         return address;
     }
 
-<<<<<<< Updated upstream
-    public String getPhone_number() {
-=======
     /**
      * Returns the user's phone number.
      *
      * @return the user's phone number.
      */
     public String getPhone_number () {
->>>>>>> Stashed changes
 
         return phone_number;
     }

@@ -1,5 +1,4 @@
 package website;
-
 import Order_and_items.Item;
 import Order_and_items.category;
 import Order_and_items.type;
@@ -12,60 +11,49 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.Vector;
 
-<<<<<<< Updated upstream
-public class Catalogue {
 
-    //private final Vector<category> categories= new Vector<>();
-    private final Vector<Item> items = new Vector<>();
-
-    public Catalogue() throws FileNotFoundException {
-        //TODO- we will change this (it's crooky) I put some categories to work on it4
-        read_catalog();
-=======
 /**
- * A class representing a catalog of items.
- * It contains a vector of items and allows searching for items by name or brand,
- * as well as printing the entire catalog.
+
+ Catalogue class represents a catalog of items and categories.
  */
+
 public class Catalogue
 {
-    private final Vector < Item > items = new Vector <>( );
+    // Vector of items contained in the catalog.
+    private final Vector<Item> items = new Vector<>();
 
     /**
-     * Constructor for Catalogue class. Reads the catalog from a file and populates the vector of items.
-     * @throws FileNotFoundException if the file "catalog_example.txt" is not found.
+     * Constructs a new Catalogue object.
+     *
+     * @throws FileNotFoundException if the catalog file cannot be found.
      */
-
-    public Catalogue ( ) throws FileNotFoundException
-    {
-        read_catalog( );
->>>>>>> Stashed changes
-
+    public Catalogue() throws FileNotFoundException {
+        read_catalog();
     }
+
     /**
-     * Searches for an item in the catalog by name.
+     * Searches for an item by name in the catalog.
+     *
      * @param Name the name of the item to search for.
-     * @return the item if found, or null if not found.
-     * @throws FileNotFoundException if the file "catalog_example.txt" is not found.
+     * @return the Item object that matches the given name, or null if not found.
+     * @throws FileNotFoundException if the catalog file cannot be found.
      */
-
     public Item search_itembyName(String Name) throws FileNotFoundException {
-
         for (Item i : items) {
             if (Objects.equals(i.getName(), Name)) {
                 return i;
-
             }
         }
         return null;
     }
-    /**
-     * Searches for all items in the catalog with a given brand name.
-     * @param brand the brand name to search for.
-     * @return a vector of all items in the catalog with the given brand name.
-     * @throws FileNotFoundException if the file "catalog_example.txt" is not found.
-     */
 
+    /**
+     * Searches for items by brand in the catalog.
+     *
+     * @param brand the brand name of the items to search for.
+     * @return a Vector of Item objects that match the given brand, or an empty Vector if none found.
+     * @throws FileNotFoundException if the catalog file cannot be found.
+     */
     public Vector<Item> search_itembyBrand(String brand) throws FileNotFoundException {
         Vector<Item> myitms = new Vector<>();
         for (Item i : items) {
@@ -75,12 +63,12 @@ public class Catalogue
         }
         return myitms;
     }
+
     /**
-     * Reads the catalog from a file and populates the vector of items.
-     * @throws FileNotFoundException if the file "catalog_example.txt" is not found.
+     * Reads the catalog file and initializes the catalog with items and categories.
+     *
+     * @throws FileNotFoundException if the catalog file cannot be found.
      */
-
-
     public void read_catalog() throws FileNotFoundException {
         BufferedReader reader = new BufferedReader(new FileReader("catalog_example.txt"));
         Scanner input = new Scanner(reader);
@@ -110,21 +98,22 @@ public class Catalogue
             items.add(newItem);
         }
     }
+
     /**
-     * Prints the entire catalog.
+     * Prints all the items in the catalog along with their details.
      */
+    public void print() {
+        for ( Item i : items ) {
 
-    public void view_cataloge() {
-        for (Item i : items) {
-            System.out.println("The catalog contains: ");
-            System.out.println("the item name: " + i.getName());
-            System.out.println("the item category name: " + i.getCategory().getName());
-            System.out.println("the item type: " + i.getType());
-            System.out.println("the item description: " + i.get_description());
-            System.out.println("the item price: " + i.getPrice());
-            System.out.println("the item brand :" + i.getBrand());
-            System.out.println('\n');
-
+            System.out.println( "The catalog contains: " );
+            System.out.println( "the item name: " + i.getName() );
+            System.out.println( "the item category name: " + i.getCategory().getName() );
+            System.out.println( "the item type: " + i.getType() );
+            System.out.println( "the item description: " + i.get_description() );
+            System.out.println( "the item price: " + i.getPrice() );
+            System.out.println( "the item brand :" + i.getBrand() );
+            System.out.println( '\n' );
         }
     }
+
 }

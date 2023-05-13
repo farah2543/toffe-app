@@ -1,15 +1,11 @@
 /**
 
-<<<<<<< Updated upstream
-public class cash implements Payment_method {
-
-=======
  This class represents a cash payment method that implements the Payment_method interface.
  */
 package payment;
 public class cash implements Payment_method
 {
->>>>>>> Stashed changes
+
     /**
      * Verifies the phone number entered by the user.
      * @param phone_num the phone number entered by the user
@@ -25,14 +21,10 @@ public class cash implements Payment_method
      * @param amount the amount to be paid by the user
      */
     @Override
-<<<<<<< Updated upstream
-    public void Pay(double amount) {
 
-=======
-    public void Pay (double amount)
-    {
+    public void Pay (double amount) {
         // TODO - implement cash.Pay
->>>>>>> Stashed changes
     }
+
 
 }

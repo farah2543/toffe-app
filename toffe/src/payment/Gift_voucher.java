@@ -11,7 +11,7 @@ public class Gift_voucher implements Payment_method {
 package payment;
 public class Gift_voucher implements Payment_method
 {
->>>>>>> Stashed changes
+
     private String code;
 
     /**
@@ -25,19 +25,16 @@ public class Gift_voucher implements Payment_method
         throw new UnsupportedOperationException();
     }
 
-<<<<<<< Updated upstream
+
     public void buy_voucher() {
-=======
+    }
+
+
     /**
      * This method buys a new gift voucher with a unique code.
      *
      * @throws UnsupportedOperationException if the method is not implemented
-     */
-    public void buy_voucher ( )
-    {
->>>>>>> Stashed changes
-        // TODO - implement Gift_voucher.buy_voucher
-        throw new UnsupportedOperationException();
-    }
+     * */
+
 
 }

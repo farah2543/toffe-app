@@ -1,17 +1,13 @@
-<<<<<<< Updated upstream
-
-package Users;
-=======
 /**
->>>>>>> Stashed changes
 
- The User class represents a parent class for all user types and contains methods for logging in and managing user accounts.
- */
-package Users;
-import java.util.Objects;
-import java.util.Vector;
+        The User class represents a parent class for all user types and contains methods for logging in and managing user accounts.
+        */
+        package Users;
+        import java.util.Objects;
+        import java.util.Vector;
 
 public class User {
+
     private Account accounts;
 
     /**
@@ -67,5 +63,4 @@ public class User {
     {
         this.accounts = accounts;
     }
-
 }

@@ -57,24 +57,10 @@ public class Database {
 
 
     }
-<<<<<<< Updated upstream
 
-    public Vector<Account> getAccounts() {
-        return accounts;
-    }
 
-    public Vector<User> getUsers() {
-        return users;
-    }
 
-    public void addToVector(User element) {
-        users.add(element);
-    }
 
-    public User get_user() {
-        User user = new User();
-        // TODO - implement Database.get_user
-=======
     /**
      * Returns the accounts vector
      * @return the accounts vector
@@ -110,37 +96,24 @@ public class Database {
     {
         User user = new User();
         // TODO - your implementation
->>>>>>> Stashed changes
+
 
         return user;
     }
 
-<<<<<<< Updated upstream
+
     public void store_user() {
         // TODO - implement Database.store_user
 
     }
 
-    public void store_item(Item item) {
+    public void store_item(Item item) {}
         // TODO - implement Database.store_item
 
-=======
+
     /**
      * Stores the user information
      */
-    public void store_user()
-    {
-        // TODO - your implementation
-    }
 
-    /**
-     * Stores the given item in the database
-     * @param item the item to be stored
-     */
-    public void store_item(Item item)
-    {
-        // TODO - your implementation
->>>>>>> Stashed changes
-    }
 
 }

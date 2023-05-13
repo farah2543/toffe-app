@@ -28,17 +28,7 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-<<<<<<< Updated upstream
-public class Website {
-    Scanner in = new Scanner(System.in);
-    private final Database database = new Database();
-    //private Vector<Account> accounts = new Vector<>();
-    private final Vector<User> users = new Vector<>();
-    private final User usr = new User();
 
-    private Buyer buyer;
-    private final Order order = new Order();
-=======
 public class Website
 {
     Scanner in = new Scanner(System.in);
@@ -65,19 +55,19 @@ public class Website
     /**
      * The name of the file to store the OTP
      */
->>>>>>> Stashed changes
+
     public String fileName = "example.txt";
     /**
      * The OTP for the current session
      */
     public int OTP;
-<<<<<<< Updated upstream
-    private final Catalogue catalogue = new Catalogue();
-=======
     /**
      * The Catalogue object for storing and displaying items
      */
+
     private final Catalogue catalogue = new Catalogue();
+
+
 
     /**
      * The constructor for Website class which initializes the Database and Catalogue objects, and prompts the user to choose a preferred action.
@@ -85,16 +75,6 @@ public class Website
      * @throws IOException If an I/O error occurs
      */
 
-
-    /**
-
-     Constructs a website with a database and a catalogue of products
-
-     Allows user to choose action - login, register or view catalogue
-
-     @throws IOException if there is an issue with file input/output
-     */
->>>>>>> Stashed changes
 
     public Website() throws IOException {
         database.load_file();
@@ -127,7 +107,6 @@ public class Website
         int choice = in.nextInt();
         in.nextLine();
 
-<<<<<<< Updated upstream
         if (choice == 1) {
             if (check_login()) {
                 catalogue.print();
@@ -137,18 +116,7 @@ public class Website
                 System.out.println("did you deliver the order");
                 System.out.println("1 - yes");
                 System.out.println("2 - NO ");
-=======
-        if ( choice == 1 )
-        {
-            if ( check_login( ) )
-            {
-                order.Create_order( );
-                check_out( );
-                order.setStatus( Status.shipping );
-                System.out.println( "did you deliver the order" );
-                System.out.println( "1 - yes" );
-                System.out.println( "2 - NO " );
->>>>>>> Stashed changes
+
             }
 
             int shipping_choice = in.nextInt();
@@ -340,31 +308,7 @@ public class Website
         Random random = new Random();
         return 100000 + random.nextInt(900000);
     }
-    /**
 
-     Displays the user registration form and creates a new account for the user.
-     @throws IOException if there is an error writing to the file
-     */
-
-    public void display_register_form() {
-        System.out.println("Please Enter your Name");
-        String Name = in.nextLine();
-        System.out.println("Please Enter your Password");
-        String Password = in.nextLine();
-        System.out.println("Please Enter your Email");
-        String Email = in.nextLine();
-        System.out.println("Please Enter your Address");
-        String Address = in.nextLine();
-        System.out.println("Please Enter your PhoneNumber");
-        String PhoneNumber = in.nextLine();
-        Account account = new Account(Name, Email, Password, Address, PhoneNumber);
-        usr.setAccounts(account);
-
-<<<<<<< Updated upstream
-        while (!validate_info(usr)) {
-            System.out.println("unSuccessfully registered");
-            display_register_form();
-=======
     public void display_register_form ( )
     {
         /**
@@ -388,7 +332,7 @@ public class Website
         {
             System.out.println( "unSuccessfully registered" );
             display_register_form( );
->>>>>>> Stashed changes
+
         }
 
 
@@ -502,14 +446,13 @@ public class Website
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-<<<<<<< Updated upstream
         set_method();
         order.pay();
         choose_shipping_address();
         ;
         order.setStatus(Status.processing);
         System.out.println("order has been successfully placed ");
-=======
+
         order.getCart().print_cart();
         System.out.println("your total is " +order.getPrice());
         set_method( );
@@ -518,7 +461,6 @@ public class Website
 
         order.setStatus( Status.processing );
         System.out.println( "order has been successfully placed " );
->>>>>>> Stashed changes
 
 
         return order;
