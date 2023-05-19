@@ -138,7 +138,6 @@ public class Order {
                 System.out.println("Please enter name of item to select it");
                 String name = input_scanner.nextLine();
                 x = cat.search_itembyName(name);
-                System.out.println(x.getName());
 
             }
             if (choice == 2) {

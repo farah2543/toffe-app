@@ -109,8 +109,6 @@ public class Website
 
         if (choice == 1) {
             if (check_login()) {
-                catalogue.print();
-                order.Create_order();
                 check_out();
                 order.setStatus(Status.shipping);
                 System.out.println("did you deliver the order");
@@ -135,8 +133,6 @@ public class Website
 
             }
 
-        } else {
-            catalogue.print();
         }
 
 
@@ -225,9 +221,9 @@ public class Website
 
         } else {
             String host = "smtp.gmail.com";
-            String username = "";//enter your email
-            String password = "";//enter your app password generated
-            String recipientEmail = "";//enter your email
+            String username = user.getAccount().get_email();;//enter your email
+            String password = "vdkivejzxqxbvctd";//enter your app password generated
+            String recipientEmail = user.getAccount().get_email();//enter your email
             String subject = "One-Time Password (OTP)";
 
             // Generate a random OTP
@@ -455,9 +451,6 @@ public class Website
 
         order.getCart().print_cart();
         System.out.println("your total is " +order.getPrice());
-        set_method( );
-        order.pay( );
-        choose_shipping_address( );
 
         order.setStatus( Status.processing );
         System.out.println( "order has been successfully placed " );

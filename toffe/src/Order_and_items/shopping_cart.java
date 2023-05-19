@@ -43,7 +43,7 @@ public class shopping_cart {
             }
 
             item.setQuantity( sealedquantity );
-            System.out.println( item.getQuantity() );
+
 
         }
         else if ( item.getType() == type.Loose ) {
