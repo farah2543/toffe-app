@@ -1,1 +1,1 @@
-Thia ia an tofee website
+This is a E-commerce website which sells candy
